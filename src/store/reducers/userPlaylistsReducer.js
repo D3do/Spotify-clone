@@ -3,7 +3,7 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   fetchPlaylistsStart: false,
   fetchPlaylistsError: false,
-  albums: null
+  playlists: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,7 +19,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchPlaylistsStart: false,
         fetchPlaylistsError: false,
-        albums: action.albums
+        playlists: action.playlists
       }
 
     case actionTypes.FETCH_PLAYLISTS_ERROR:

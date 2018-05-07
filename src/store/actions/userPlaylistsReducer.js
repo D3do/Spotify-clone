@@ -6,10 +6,10 @@ export const fetchPlaylistsStart = () => {
   };
 };
 
-export const fetchPlaylistsSuccess = albums => {
+export const fetchPlaylistsSuccess = playlists => {
   return {
     type: actionTypes.FETCH_PLAYLISTS_SUCCESS,
-    albums: albums
+    playlists: playlists
   };
 };
 
