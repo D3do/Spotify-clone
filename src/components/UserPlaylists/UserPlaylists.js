@@ -22,10 +22,16 @@ class UserPlaylists extends Component {
 
   setPlaylists = () => {
     return this.props.playlists.map(playlist => {
+      const getPlaylistTracks = () => {
+        this.props.changeHeaderTitle(playlist.name);
+        this.props.fetchPlaylistTracks(playlist.owner.id, playlist.id, this.props.accessToken);
+      }
+
       return (
-        <li key={playlist.name}>
+        <li key={playlist.name}
+            onClick={getPlaylistTracks}>
           <NavLink
-            to={`/${playlist.name}`}
+            to={`/playlist/${playlist.name}`}
             activeClassName={styles.active}>
               {playlist.name}
             </NavLink>
@@ -49,13 +55,16 @@ class UserPlaylists extends Component {
 const mapStateToProps = state => {
   return {
     accessToken: state.setTokenReducer ? state.setTokenReducer.accessToken : '',
-    playlists: state.userPlaylistsReducer.playlists ? state.userPlaylistsReducer.playlists : null
+    playlists: state.userPlaylistsReducer.playlists ? state.userPlaylistsReducer.playlists : null,
+    userId: state.userReducer.user
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPlaylists: (accessToken) => dispatch(actions.fetchPlaylists(accessToken))
+    fetchPlaylists: (accessToken) => dispatch(actions.fetchPlaylists(accessToken)),
+    fetchPlaylistTracks: (userId, playlistId, accessToken) => dispatch(actions.fetchPlaylistTracks(userId, playlistId, accessToken)),
+    changeHeaderTitle: (headerTitle) => dispatch(actions.changeHeaderTitle(headerTitle))
   };
 };
 

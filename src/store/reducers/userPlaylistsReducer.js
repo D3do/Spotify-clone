@@ -3,7 +3,10 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   fetchPlaylistsStart: false,
   fetchPlaylistsError: false,
-  playlists: null
+  playlists: null,
+  fetchPlaylistTracksStart: false,
+  fetchPlaylistTracksError: false,
+  playlistTracks: null
 }
 
 const reducer = (state = initialState, action) => {
@@ -27,6 +30,27 @@ const reducer = (state = initialState, action) => {
         ...state,
         fetchPlaylistsStart: false,
         fetchPlaylistsError: true
+      }
+
+    case actionTypes.FETCH_PLAYLIST_TRACKS_START:
+      return {
+        ...state,
+        fetchPlaylistTracksStart: true
+      }
+
+    case actionTypes.FETCH_PLAYLIST_TRACKS_SUCCESS:
+      return {
+        ...state,
+        fetchPlaylistTracksStart: false,
+        fetchPlaylistTracksError: false,
+        playlistTracks: action.playlistTracks
+      }
+
+    case actionTypes.FETCH_PLAYLIST_TRACKS_ERROR:
+      return {
+        ...state,
+        fetchPlaylistTracksStart: false,
+        fetchPlaylistTracksError: true,
       }
 
     default:

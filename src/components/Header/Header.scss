@@ -1,0 +1,7 @@
+@import '../../main';
+
+.Header {
+  grid-column: 2 / 3;
+  grid-row-end: 2;
+  color: $textColor;
+}

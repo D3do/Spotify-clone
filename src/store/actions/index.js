@@ -3,5 +3,14 @@ export {
 } from './setTokenActions';
 
 export {
-  fetchPlaylists
-} from './userPlaylistsReducer';
+  fetchPlaylists,
+  fetchPlaylistTracks
+} from './userPlaylistsActions';
+
+export {
+  changeHeaderTitle
+} from './changeHeaderActions';
+
+export {
+  fetchUser
+} from './userActions';

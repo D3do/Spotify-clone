@@ -9,13 +9,17 @@ import './index.css';
 import App from './App';
 import setTokenReducer from './store/reducers/setTokenReducer';
 import userPlaylistsReducer from './store/reducers/userPlaylistsReducer';
+import changeHeaderReducer from './store/reducers/changeHeaderReducer';
+import userReducer from './store/reducers/userReducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
   setTokenReducer: setTokenReducer,
-  userPlaylistsReducer: userPlaylistsReducer
+  userPlaylistsReducer: userPlaylistsReducer,
+  changeHeaderReducer: changeHeaderReducer,
+  userReducer: userReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
