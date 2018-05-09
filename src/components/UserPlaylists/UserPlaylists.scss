@@ -6,6 +6,10 @@
   background: $SideMenuColor;
   color: $textColor;
 
+  a.active {
+    color: #40A4C8;
+  }
+
   p {
     margin: 0;
   }

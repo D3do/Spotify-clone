@@ -31,8 +31,8 @@ class UserPlaylists extends Component {
         <li key={playlist.name}
             onClick={getPlaylistTracks}>
           <NavLink
-            to={`/playlist/${playlist.name}`}
-            activeClassName={styles.active}>
+            to={`/playlists/${playlist.name}`}
+            className={this.props.headerTitle === playlist.name ? styles.active : null}>
               {playlist.name}
             </NavLink>
         </li>
@@ -40,10 +40,57 @@ class UserPlaylists extends Component {
     });
   };
 
+  renderLibrary = () => {
+    const library = [
+      {
+        name: 'Recently Played',
+        action: (name) => {
+          this.props.changeHeaderTitle(name);
+          this.props.fetchRecentlyPlayed(this.props.accessToken);
+        }
+      },
+      {
+        name: 'Songs',
+        action: (name) => {
+          this.props.changeHeaderTitle(name);
+          this.props.fetchUserTracks(this.props.accessToken);
+        }
+      },
+      {
+        name: 'Albums',
+        action: (name) => {
+          this.props.changeHeaderTitle(name);
+          this.props.fetchUserAlbums(this.props.accessToken);
+        }
+      },
+    ];
+
+    return (
+      library.map(item => {
+        return (
+          <li
+            key={item.name}
+            onClick={() => item.action(item.name)}>
+              <NavLink
+                to={`/library/${item.name}`}
+                className={this.props.headerTitle === item.name ? styles.active : null}
+                >
+                {item.name}
+              </NavLink>
+          </li>
+        )
+      })
+    );
+  }
+
   render() {
     return (
       <div className={styles.UserPlaylists}>
-        <p>Your Library</p>
+        <p>YOUR LIBRARY</p>
+        <ul>
+          {this.renderLibrary()}
+        </ul>
+        <p>PLAYLISTS</p>
         <ul>
           {this.props.playlists && this.setPlaylists()}
         </ul>
@@ -56,7 +103,8 @@ const mapStateToProps = state => {
   return {
     accessToken: state.setTokenReducer ? state.setTokenReducer.accessToken : '',
     playlists: state.userPlaylistsReducer.playlists ? state.userPlaylistsReducer.playlists : null,
-    userId: state.userReducer.user
+    userId: state.userReducer.user,
+    headerTitle: state.changeHeaderReducer.headerTitle
   };
 };
 
@@ -64,7 +112,10 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchPlaylists: (accessToken) => dispatch(actions.fetchPlaylists(accessToken)),
     fetchPlaylistTracks: (userId, playlistId, accessToken) => dispatch(actions.fetchPlaylistTracks(userId, playlistId, accessToken)),
-    changeHeaderTitle: (headerTitle) => dispatch(actions.changeHeaderTitle(headerTitle))
+    changeHeaderTitle: (headerTitle) => dispatch(actions.changeHeaderTitle(headerTitle)),
+    fetchUserTracks: (accessToken) => dispatch(actions.fetchUserTracks(accessToken)),
+    fetchRecentlyPlayed: (accessToken) => dispatch(actions.fetchRecentlyPlayed(accessToken)),
+    fetchUserAlbums: (accessToken) => dispatch(actions.fetchUserAlbums(accessToken))
   };
 };
 

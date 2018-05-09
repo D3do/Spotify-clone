@@ -14,3 +14,9 @@ export {
 export {
   fetchUser
 } from './userActions';
+
+export {
+  fetchUserTracks,
+  fetchRecentlyPlayed,
+  fetchUserAlbums
+} from './userLibraryActions';
