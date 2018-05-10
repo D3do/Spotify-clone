@@ -8,20 +8,18 @@ import thunk from 'redux-thunk';
 import './index.css';
 import App from './App';
 import setTokenReducer from './store/reducers/setTokenReducer';
-import userPlaylistsReducer from './store/reducers/userPlaylistsReducer';
+import fetchSongsReducer from './store/reducers/fetchSongsReducer';
 import changeHeaderReducer from './store/reducers/changeHeaderReducer';
 import userReducer from './store/reducers/userReducer';
-import userLibraryReducer from './store/reducers/userLibraryReducer';
 import registerServiceWorker from './registerServiceWorker';
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
 const rootReducer = combineReducers({
   setTokenReducer: setTokenReducer,
-  userPlaylistsReducer: userPlaylistsReducer,
+  fetchSongsReducer: fetchSongsReducer,
   changeHeaderReducer: changeHeaderReducer,
   userReducer: userReducer,
-  userLibraryReducer: userLibraryReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

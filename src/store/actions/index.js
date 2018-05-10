@@ -4,8 +4,11 @@ export {
 
 export {
   fetchPlaylists,
-  fetchPlaylistTracks
-} from './userPlaylistsActions';
+  fetchPlaylistTracks,
+  fetchUserTracks,
+  fetchRecentlyPlayed,
+  fetchUserAlbums
+} from './fetchSongsActions';
 
 export {
   changeHeaderTitle
@@ -14,9 +17,3 @@ export {
 export {
   fetchUser
 } from './userActions';
-
-export {
-  fetchUserTracks,
-  fetchRecentlyPlayed,
-  fetchUserAlbums
-} from './userLibraryActions';

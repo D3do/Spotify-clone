@@ -102,7 +102,7 @@ class UserPlaylists extends Component {
 const mapStateToProps = state => {
   return {
     accessToken: state.setTokenReducer ? state.setTokenReducer.accessToken : '',
-    playlists: state.userPlaylistsReducer.playlists ? state.userPlaylistsReducer.playlists : null,
+    playlists: state.fetchSongsReducer.playlists ? state.fetchSongsReducer.playlists : null,
     userId: state.userReducer.user,
     headerTitle: state.changeHeaderReducer.headerTitle
   };
