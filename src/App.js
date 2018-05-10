@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
 import UserPlaylists from './components/UserPlaylists/UserPlaylists';
 import Header from './components/Header/Header';
+import SongsList from './components/SongsList/SongsList';
+import Footer from './components/Footer/Footer';
 import styles from './App.scss';
 
 class App extends Component {
@@ -27,7 +29,9 @@ class App extends Component {
       spotify = (
         <React.Fragment>
           <Header />
+          <SongsList />
           <UserPlaylists />
+          <Footer />
         </React.Fragment>
       )
     }

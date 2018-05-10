@@ -1,0 +1,47 @@
+@import '../../main';
+
+.Layout {
+  grid-column: 2;
+  grid-row: 2 / 3;
+  margin: 30px;
+}
+
+.Header {
+  display: grid;
+  grid-template-columns: 5% 35% 25% 20% 5% 5%;
+  grid-template-rows: 5%;
+  color: white;
+  border-bottom: 1px solid #666;
+  align-items: center;
+  padding-bottom: 8px;
+  gap: 8px;
+
+  p {
+    margin: 0;
+    text-transform: uppercase;
+    color: $textColor;
+    font-size: 12px;
+  }
+
+  .Title {
+    grid-column-start: 2;
+  }
+
+  .Calendar,
+  .Clock {
+    color: $textColor;
+    font-size: 16px;
+  }
+}
+
+.SongsList {
+  display: grid;
+  grid-template-columns: 5% 35% 25% 20% 5% 5%;
+  color: white;
+  gap: 8px;
+
+  p {
+    margin: 0;
+  }
+
+}
