@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 import * as actions from './store/actions/index';
 import UserPlaylists from './components/UserPlaylists/UserPlaylists';
 import Header from './components/Header/Header';
 import SongsList from './components/SongsList/SongsList';
+import AlbumsList from './components/AlbumsList/AlbumsList';
 import Footer from './components/Footer/Footer';
 import styles from './App.scss';
 
@@ -25,11 +26,20 @@ class App extends Component {
 
   render() {
     let spotify = <h1>Loading...</h1>;
+    let routes = (
+      <Switch>
+        <Route path="/library" component={SongsList} />
+        <Route path="/playlists" component={SongsList} />
+        <Route path="/callback" component={SongsList} />
+        <Route path="/albums" component={AlbumsList} />
+      </Switch>
+    )
+
     if(this.props.accessToken) {
       spotify = (
         <React.Fragment>
           <Header />
-          <SongsList />
+          {routes}
           <UserPlaylists />
           <Footer />
         </React.Fragment>
@@ -57,5 +67,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
-// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

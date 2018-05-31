@@ -44,6 +44,7 @@ class UserPlaylists extends Component {
     const library = [
       {
         name: 'Recently Played',
+        path: 'albums',
         action: (name) => {
           this.props.changeHeaderTitle(name);
           this.props.fetchRecentlyPlayed(this.props.accessToken);
@@ -51,6 +52,7 @@ class UserPlaylists extends Component {
       },
       {
         name: 'Songs',
+        path: 'library',
         action: (name) => {
           this.props.changeHeaderTitle(name);
           this.props.fetchUserTracks(this.props.accessToken);
@@ -58,6 +60,7 @@ class UserPlaylists extends Component {
       },
       {
         name: 'Albums',
+        path: 'albums',
         action: (name) => {
           this.props.changeHeaderTitle(name);
           this.props.fetchUserAlbums(this.props.accessToken);
@@ -72,7 +75,7 @@ class UserPlaylists extends Component {
             key={item.name}
             onClick={() => item.action(item.name)}>
               <NavLink
-                to={`/library/${item.name}`}
+                to={`/${item.path}/${item.name}`}
                 className={this.props.headerTitle === item.name ? styles.active : null}
                 >
                 {item.name}

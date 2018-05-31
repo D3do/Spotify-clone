@@ -19,12 +19,18 @@ class SongsList extends Component {
               <p>{song.track.artists[0].name}</p>
               <p>{song.track.album.name}</p>
               <p>{song.added_at}</p>
-              <p>{song.track.duration_ms}</p>
+              <p>{this.msToMinutesAndSeconds(song.track.duration_ms)}</p>
           </React.Fragment>
         )
       })
     )
   };
+
+  msToMinutesAndSeconds(ms) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+  }
 
   render() {
     return(

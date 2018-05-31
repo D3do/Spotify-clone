@@ -124,10 +124,10 @@ export const fetchRecentlyPlayedStart = () => {
   };
 };
 
-export const fetchRecentlyPlayedSuccess = recentlyPlayed => {
+export const fetchRecentlyPlayedSuccess = albums => {
   return {
     type: actionTypes.FETCH_RECENTLY_PLAYED_SUCCESS,
-    recentlyPlayed: recentlyPlayed
+    albums: albums
   };
 };
 
@@ -163,10 +163,10 @@ export const fetchUserAlbumsStart = () => {
   };
 };
 
-export const fetchUserAlbumsSuccess = userAlbums => {
+export const fetchUserAlbumsSuccess = albums => {
   return {
     type: actionTypes.FETCH_USER_ALBUMS_SUCCESS,
-    userAlbums: userAlbums
+    albums: albums
   };
 };
 
@@ -192,6 +192,45 @@ export const fetchUserAlbums = (accessToken) => {
       dispatch(fetchUserAlbumsSuccess(data.items));
     }).catch(error => {
       dispatch(fetchUserAlbumsError(error));
+    });
+  };
+};
+
+export const fetchAlbumTracksStart = () => {
+  return {
+    type: actionTypes.FETCH_ALBUM_TRACKS_START
+  };
+};
+
+export const fetchAlbumTracksSuccess = songs => {
+  return {
+    type: actionTypes.FETCH_ALBUM_TRACKS_SUCCESS,
+    songs: songs
+  };
+};
+
+export const fetchAlbumTracksError = () => {
+  return {
+    type: actionTypes.FETCH_ALBUM_TRACKS_ERROR
+  };
+};
+
+export const fetchAlbumTracks = (accessToken, albumId) => {
+  return dispatch => {
+    const request = new Request(`https://api.spotify.com/v1/albums/${albumId}/tracks`, {
+      headers: new Headers({
+        'Authorization': 'Bearer ' + accessToken
+      })
+    });
+
+    dispatch(fetchAlbumTracksStart());
+
+    fetch(request).then(response => {
+      return response.json()
+    }).then(data => {
+      dispatch(fetchAlbumTracksSuccess(data.items));
+    }).catch(error => {
+      dispatch(fetchAlbumTracksError(error));
     });
   };
 };

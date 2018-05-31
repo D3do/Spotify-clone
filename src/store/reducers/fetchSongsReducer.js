@@ -11,10 +11,11 @@ const initialState = {
   fetchUserTracksError: false,
   fetchRecentlyPlayedStart: false,
   fetchRecentlyPlayedError: false,
-  recentlyPlayed: null,
+  albums: null,
   fetchUserAlbumsStart: false,
   fetchUserAlbumsError: false,
-  userAlbums: null
+  fetchAlbumTracksStart: false,
+  fetchAlbumTracksError: false,
 }
 
 const reducer = (state = initialState, action) => {
@@ -91,7 +92,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       fetchRecentlyPlayedStart: false,
-      recentlyPlayed: action.recentlyPlayed
+      albums: action.albums
     };
 
     case actionTypes.FETCH_RECENTLY_PLAYED_ERROR:
@@ -111,7 +112,7 @@ const reducer = (state = initialState, action) => {
     return {
       ...state,
       fetchUserAlbumsStart: false,
-      userAlbums: action.userAlbums
+      albums: action.albums
     };
 
     case actionTypes.FETCH_USER_ALBUMS_ERROR:
@@ -119,6 +120,26 @@ const reducer = (state = initialState, action) => {
       ...state,
       fetchUserAlbumsStart: false,
       fetchUserAlbumsError: true
+    };
+
+    case actionTypes.FETCH_ALBUM_TRACKS_START:
+    return {
+      ...state,
+      fetchAlbumTracksStart: true
+    };
+
+    case actionTypes.FETCH_ALBUM_TRACKS_SUCCESS:
+    return {
+      ...state,
+      fetchAlbumTracksStart: false,
+      songs: action.songs
+    };
+
+    case actionTypes.FETCH_ALBUM_TRACKS_ERROR:
+    return {
+      ...state,
+      fetchAlbumTracksStart: false,
+      fetchAlbumTracksError: true,
     };
 
     default:

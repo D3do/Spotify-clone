@@ -7,7 +7,8 @@ export {
   fetchPlaylistTracks,
   fetchUserTracks,
   fetchRecentlyPlayed,
-  fetchUserAlbums
+  fetchUserAlbums,
+  fetchAlbumTracks
 } from './fetchSongsActions';
 
 export {
